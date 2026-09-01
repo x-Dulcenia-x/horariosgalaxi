@@ -3,239 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Horario De Locutores y Dj - Galaxy Sound Radio</title>
+    <title>Horario De Locutores y Dj en la Mejor Estacion de Galaxy Sound Radio</title>
     <style>
         :root {
-            --bg-color: #0b0f19;
-            --panel-bg: rgba(18, 24, 38, 0.88);
-            --border-color: rgba(255, 255, 255, 0.08);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --bg-color: #0d1117;
+            --panel-bg: #161b22;
+            --border-color: #30363d;
+            --text-color: #c9d1d9;
+            --accent-glow: #1f6feb;
+            --btn-bg: linear-gradient(135deg, #21262d 0%, #161b22 100%);
+            --btn-hover: linear-gradient(135deg, #30363d 0%, #21262d 100%);
+            --empty-bg: #111418;
         }
 
         body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background-color: var(--bg-color);
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(29, 78, 216, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(147, 51, 234, 0.15) 0%, transparent 40%);
-            color: var(--text-main);
-            min-height: 100vh;
+            color: var(--text-color);
+            margin: 0;
             padding: 20px;
+            display: flex;
+            justify-content: center;
         }
 
         .container {
-            max-width: 1400px;
-            margin: 0 auto;
+            width: 100%;
+            max-width: 1300px;
             background: var(--panel-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-            overflow: hidden;
+            border: 2px solid var(--border-color);
+            border-radius: 16px;
             padding: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
         }
 
         header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 15px;
         }
 
         header h1 {
-            font-size: 1.9rem;
-            background: linear-gradient(135deg, #60a5fa, #c084fc, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 5px;
+            font-size: 2.2rem;
+            color: #58a6ff;
+            margin: 0 0 10px 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
         }
 
-        header p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            letter-spacing: 0.5px;
+        header h2 {
+            font-size: 1.3rem;
+            color: #8b949e;
+            margin: 0;
         }
 
-        .table-container {
-            width: 100%;
+        .table-responsive {
             overflow-x: auto;
-            margin-bottom: 30px;
-            border-radius: 12px;
-            border: 1px solid var(--border-color);
         }
 
         table {
             width: 100%;
-            border-collapse: collapse;
-            text-align: center;
-            font-size: 0.9rem;
-            min-width: 950px;
-        }
-
-        th, td {
-            padding: 10px 6px;
-            border-bottom: 1px solid var(--border-color);
-            border-right: 1px solid var(--border-color);
-        }
-
-        th:last-child, td:last-child {
-            border-right: none;
+            border-collapse: separate;
+            border-spacing: 6px;
+            margin-bottom: 30px;
+            min-width: 900px;
         }
 
         th {
-            background: rgba(15, 23, 42, 0.9);
-            color: #60a5fa;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-        }
-
-        .country-time-col {
-            background: rgba(15, 23, 42, 0.7);
-            font-size: 0.75rem;
-            color: #cbd5e1;
-            font-weight: 500;
-            width: 150px;
-            text-align: left;
-            padding-left: 10px;
-        }
-
-        .time-row {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin: 2px 0;
-            padding-right: 4px;
-        }
-
-        .flag {
-            font-size: 0.85rem;
-            margin-right: 4px;
-        }
-
-        /* Botón 3D con relieve y profundidad */
-        .dj-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-            padding: 8px 10px;
-            font-size: 0.78rem;
-            font-weight: bold;
-            color: #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            background-color: #21262d;
+            color: #58a6ff;
+            padding: 12px 8px;
+            font-size: 0.95rem;
             border-radius: 8px;
+            border: 1px solid var(--border-color);
             text-transform: uppercase;
-            transition: all 0.1s ease;
-            width: 100%;
-            min-height: 38px;
-            cursor: pointer;
             letter-spacing: 0.5px;
+        }
+
+        td {
+            padding: 6px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Columna de Horarios y Banderas */
+        .time-slot-cell {
+            background: #1f242c;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 8px;
+            font-size: 0.8rem;
+            color: #8b949e;
+            font-weight: bold;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.4);
+            white-space: nowrap;
+        }
+
+        .flags-container {
+            display: flex;
+            justify-content: center;
+            gap: 4px;
+            margin-top: 4px;
+            font-size: 0.7rem;
+        }
+
+        /* Botones 3D para Locutores */
+        .dj-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 6px;
+            background: linear-gradient(135deg, #238636 0%, #196c2e 100%);
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 0.85rem;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px solid #2ea043;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+            transition: all 0.1s ease;
+            text-transform: uppercase;
         }
 
         .dj-btn:hover {
-            filter: brightness(1.1);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
         }
 
         .dj-btn:active {
-            transform: translateY(2px);
+            transform: translateY(1px);
+            box-shadow: 0 2px 3px rgba(0,0,0,0.3);
         }
 
-        /* Colores y sombras 3D personalizados por Locutor / DJ */
-        .btn-alix { background: linear-gradient(145deg, #3b82f6, #2563eb); box-shadow: 0 4px 0 #1d4ed8, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-fierrudo { background: linear-gradient(145deg, #f59e0b, #d97706); box-shadow: 0 4px 0 #b45309, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-luis { background: linear-gradient(145deg, #10b981, #059669); box-shadow: 0 4px 0 #047857, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-didi { background: linear-gradient(145deg, #ec4899, #db2777); box-shadow: 0 4px 0 #be185d, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-dayana { background: linear-gradient(145deg, #8b5cf6, #7c3aed); box-shadow: 0 4px 0 #6d28d9, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-manuel { background: linear-gradient(145deg, #06b6d4, #0891b2); box-shadow: 0 4px 0 #0e7490, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-milka { background: linear-gradient(145deg, #f97316, #ea580c); box-shadow: 0 4px 0 #c2410c, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-besitos { background: linear-gradient(145deg, #e11d48, #be123c); box-shadow: 0 4px 0 #9f1239, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-ari { background: linear-gradient(145deg, #14b8a6, #0d9488); box-shadow: 0 4px 0 #0f766e, 0 6px 10px rgba(0,0,0,0.4); }
-        .btn-maxim { background: linear-gradient(145deg, #6366f1, #4f46e5); box-shadow: 0 4px 0 #4338ca, 0 6px 10px rgba(0,0,0,0.4); }
+        /* Distintos tonos elegantes para los botones de locutores */
+        .btn-alix { background: linear-gradient(135deg, #1f6feb 0%, #1158c7 100%); border-color: #388bfd; }
+        .btn-fierrudo { background: linear-gradient(135deg, #8957e5 0%, #6e40c9 100%); border-color: #a371f7; }
+        .btn-luis { background: linear-gradient(135deg, #d29922 0%, #b08800 100%); border-color: #e3b341; color: #000; }
+        .btn-didi { background: linear-gradient(135deg, #db61a2 0%, #bf4d8c 100%); border-color: #f778ba; }
+        .btn-dayana { background: linear-gradient(135deg, #3fb950 0%, #2ea043 100%); border-color: #56d364; }
+        .btn-pelired { background: linear-gradient(135deg, #f85149 0%, #da3633 100%); border-color: #ff7b72; }
+        .btn-besitos { background: linear-gradient(135deg, #f78166 0%, #e5534b 100%); border-color: #ffa198; }
+        .btn-aries { background: linear-gradient(135deg, #58a6ff 0%, #388bfd 100%); border-color: #79c0ff; }
+        .btn-maxim { background: linear-gradient(135deg, #a371f7 0%, #8957e5 100%); border-color: #d2a8ff; }
+        .btn-manuel { background: linear-gradient(135deg, #39c5bb 0%, #22867e 100%); border-color: #56d4dd; }
+        .btn-milka { background: linear-gradient(135deg, #e3b341 0%, #bb8009 100%); border-color: #f0e68c; color: #000; }
 
+        /* Espacios vacíos */
         .empty-slot {
-            color: #4b5563;
+            display: block;
+            width: 100%;
+            padding: 10px 6px;
+            background-color: var(--empty-bg);
+            color: #484f58;
             font-weight: bold;
-            font-size: 1.1rem;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            border: 1px dashed #30363d;
+            text-align: center;
         }
 
         /* Sección de DJs Emergentes */
         .emerging-section {
-            margin-top: 30px;
-            background: rgba(15, 23, 42, 0.6);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
+            margin-top: 40px;
+            border-top: 2px solid var(--border-color);
+            padding-top: 25px;
         }
 
         .emerging-section h3 {
-            font-size: 1.1rem;
-            color: #60a5fa;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 15px;
             text-align: center;
+            color: #58a6ff;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            letter-spacing: 1px;
         }
 
         .emerging-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 12px;
         }
 
         .emerging-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 10px;
-            background: linear-gradient(145deg, #334155, #1e293b);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: #e2e8f0;
-            font-size: 0.8rem;
-            font-weight: bold;
-            text-transform: uppercase;
-            box-shadow: 0 3px 0 #0f172a, 0 5px 8px rgba(0,0,0,0.3);
-            transition: all 0.1s ease;
-            cursor: pointer;
+            background: linear-gradient(135deg, #30363d 0%, #21262d 100%);
+            color: #c9d1d9;
+            border: 1px solid #484f58;
+            padding: 12px;
             text-align: center;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.2s ease;
+            text-transform: uppercase;
         }
 
         .emerging-btn:hover {
-            filter: brightness(1.15);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 0 #0f172a, 0 6px 10px rgba(0,0,0,0.4);
-        }
-
-        .emerging-btn:active {
-            transform: translateY(2px);
-            box-shadow: 0 1px 0 #0f172a, 0 2px 4px rgba(0,0,0,0.3);
+            background: linear-gradient(135deg, #484f58 0%, #30363d 100%);
+            border-color: #58a6ff;
+            color: #ffffff;
+            transform: translateY(-2px);
         }
 
         footer {
             text-align: center;
-            margin-top: 25px;
+            margin-top: 30px;
             padding-top: 15px;
             border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
+            color: #8b949e;
+            font-size: 0.9rem;
         }
 
-        footer span {
-            color: #60a5fa;
-            font-weight: 600;
+        /* Estilo para los labios blancos */
+        .white-lips {
+            filter: grayscale(100%) brightness(200%);
         }
     </style>
 </head>
@@ -244,14 +222,14 @@
     <div class="container">
         <header>
             <h1>Horario De Locutores y Dj</h1>
-            <p>En la Mejor Estación de Galaxy Sound Radio</p>
+            <h2>En la Mejor Estación de Galaxy Sound Radio</h2>
         </header>
 
-        <div class="table-container">
+        <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
-                        <th>Horarios Países</th>
+                        <th>Horario / País</th>
                         <th>Lunes</th>
                         <th>Martes</th>
                         <th>Miércoles</th>
@@ -263,11 +241,11 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 11:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 11:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 16:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 07:00</div>
+                        <td class="time-slot-cell">
+                            07:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽07:00</span><span>🇦🇷09:00</span><span>🇨🇱09:00</span><span>🇪🇸14:00</span>
+                            </div>
                         </td>
                         <td><div class="dj-btn btn-alix">Alix</div></td>
                         <td><div class="dj-btn btn-alix">Alix</div></td>
@@ -278,11 +256,11 @@
                         <td><div class="empty-slot">-</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 12:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 12:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 17:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 08:00</div>
+                        <td class="time-slot-cell">
+                            08:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽08:00</span><span>🇦🇷10:00</span><span>🇨🇱10:00</span><span>🇪🇸15:00</span>
+                            </div>
                         </td>
                         <td><div class="dj-btn btn-alix">Alix</div></td>
                         <td><div class="dj-btn btn-alix">Alix</div></td>
@@ -293,11 +271,11 @@
                         <td><div class="dj-btn btn-alix">Alix</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 13:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 13:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 18:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 09:00</div>
+                        <td class="time-slot-cell">
+                            09:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽09:00</span><span>🇦🇷11:00</span><span>🇨🇱11:00</span><span>🇪🇸16:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="dj-btn btn-fierrudo">Fierrudo</div></td>
@@ -308,41 +286,41 @@
                         <td><div class="dj-btn btn-alix">Alix</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 14:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 14:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 19:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 10:00</div>
+                        <td class="time-slot-cell">
+                            10:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽10:00</span><span>🇦🇷12:00</span><span>🇨🇱12:00</span><span>🇪🇸17:00</span>
+                            </div>
                         </td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
                         <td><div class="dj-btn btn-didi">Didi</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 15:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 15:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 20:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 11:00</div>
+                        <td class="time-slot-cell">
+                            11:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽11:00</span><span>🇦🇷13:00</span><span>🇨🇱13:00</span><span>🇪🇸18:00</span>
+                            </div>
                         </td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
                         <td><div class="dj-btn btn-didi">Didi</div></td>
-                        <td><div class="dj-btn btn-luis">Luis J</div></td>
+                        <td><div class="dj-btn btn-luis">Luis j</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 16:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 16:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 21:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 12:00</div>
+                        <td class="time-slot-cell">
+                            12:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽12:00</span><span>🇦🇷14:00</span><span>🇨🇱14:00</span><span>🇪🇸19:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="empty-slot">-</div></td>
@@ -353,11 +331,11 @@
                         <td><div class="empty-slot">-</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 17:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 17:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 22:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 13:00</div>
+                        <td class="time-slot-cell">
+                            13:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽13:00</span><span>🇦🇷15:00</span><span>🇨🇱15:00</span><span>🇪🇸20:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="empty-slot">-</div></td>
@@ -368,11 +346,26 @@
                         <td><div class="dj-btn btn-dayana">Dayana</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 18:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 18:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 23:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 14:00</div>
+                        <td class="time-slot-cell">
+                            14:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽14:00</span><span>🇦🇷16:00</span><span>🇨🇱16:00</span><span>🇪🇸21:00</span>
+                            </div>
+                        </td>
+                        <td><div class="dj-btn btn-pelired">PeliRed</div></td>
+                        <td><div class="dj-btn btn-pelired">PeliRed</div></td>
+                        <td><div class="dj-btn btn-pelired">PeliRed</div></td>
+                        <td><div class="dj-btn btn-pelired">PeliRed</div></td>
+                        <td><div class="dj-btn btn-pelired">PeliRed</div></td>
+                        <td><div class="dj-btn btn-dayana">Dayana</div></td>
+                        <td><div class="dj-btn btn-dayana">Dayana</div></td>
+                    </tr>
+                    <tr>
+                        <td class="time-slot-cell">
+                            15:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽15:00</span><span>🇦🇷17:00</span><span>🇨🇱17:00</span><span>🇪🇸22:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="empty-slot">-</div></td>
@@ -383,26 +376,11 @@
                         <td><div class="dj-btn btn-dayana">Dayana</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 19:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 19:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 00:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 15:00</div>
-                        </td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-dayana">Dayana</div></td>
-                        <td><div class="dj-btn btn-dayana">Dayana</div></td>
-                    </tr>
-                    <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 20:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 20:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 01:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 16:00</div>
+                        <td class="time-slot-cell">
+                            16:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽16:00</span><span>🇦🇷18:00</span><span>🇨🇱18:00</span><span>🇪🇸23:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="empty-slot">-</div></td>
@@ -413,11 +391,11 @@
                         <td><div class="dj-btn btn-milka">Milka</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 21:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 21:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 02:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 17:00</div>
+                        <td class="time-slot-cell">
+                            17:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽17:00</span><span>🇦🇷19:00</span><span>🇨🇱19:00</span><span>🇪🇸00:00</span>
+                            </div>
                         </td>
                         <td><div class="empty-slot">-</div></td>
                         <td><div class="empty-slot">-</div></td>
@@ -428,11 +406,11 @@
                         <td><div class="dj-btn btn-milka">Milka</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 22:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 22:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 03:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 18:00</div>
+                        <td class="time-slot-cell">
+                            18:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽18:00</span><span>🇦🇷20:00</span><span>🇨🇱20:00</span><span>🇪🇸01:00</span>
+                            </div>
                         </td>
                         <td><div class="dj-btn btn-didi">Didi</div></td>
                         <td><div class="dj-btn btn-didi">Didi</div></td>
@@ -443,106 +421,14 @@
                         <td><div class="empty-slot">-</div></td>
                     </tr>
                     <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 23:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 23:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 04:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 19:00</div>
+                        <td class="time-slot-cell">
+                            19:00 hrs
+                            <div class="flags-container">
+                                <span>🇲🇽19:00</span><span>🇦🇷21:00</span><span>🇨🇱21:00</span><span>🇪🇸02:00</span>
+                            </div>
                         </td>
-                        <td><div class="dj-btn btn-besitos">Besitos <span style="color:#ffffff;">💋</span></div></td>
-                        <td><div class="dj-btn btn-besitos">Besitos <span style="color:#ffffff;">💋</span></div></td>
-                        <td><div class="dj-btn btn-besitos">Besitos <span style="color:#ffffff;">💋</span></div></td>
-                        <td><div class="dj-btn btn-besitos">Besitos <span style="color:#ffffff;">💋</span></div></td>
-                        <td><div class="dj-btn btn-besitos">Besitos <span style="color:#ffffff;">💋</span></div></td>
-                        <td><div class="dj-btn btn-milka">Milka</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 00:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 00:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 05:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 20:00</div>
-                        </td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-ari">Ari</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 01:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 01:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 06:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 21:00</div>
-                        </td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-ari">Ari</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-ari">Aries</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 02:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 02:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 07:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 22:00</div>
-                        </td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="country-time-col">
-                            <div class="time-row"><span class="flag">🇦🇷</span> 03:00</div>
-                            <div class="time-row"><span class="flag">🇨🇱</span> 03:00</div>
-                            <div class="time-row"><span class="flag">🇪🇸</span> 08:00</div>
-                            <div class="time-row"><span class="flag">🇲🇽</span> 23:00</div>
-                        </td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn btn-maxim">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="emerging-section">
-            <h3>DJs Emergentes</h3>
-            <div class="emerging-grid">
-                <div class="emerging-btn">HUGO DJ</div>
-                <div class="emerging-btn">GATO FRESA</div>
-                <div class="emerging-btn">DJ YUCA</div>
-                <div class="emerging-btn">VIRTUAL</div>
-                <div class="emerging-btn">CESAR MIX</div>
-                <div class="emerging-btn">JUANDJMIX</div>
-                <div class="emerging-btn">BUHO</div>
-                <div class="emerging-btn">EL MAESTRO</div>
-                <div class="emerging-btn">RULAXIN</div>
-                <div class="emerging-btn">RICKY</div>
-                <div class="emerging-btn">CHICA MIX</div>
-                <div class="emerging-btn">ADONIS</div>
-            </div>
-        </div>
-
-        <footer>
-            &copy; 2026 <span>Bolita de Queso mx</span>. Todos los derechos reservados.
-        </footer>
-    </div>
-
-</body>
-</html>
+                        <td><div class="dj-btn btn-besitos">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn btn-besitos">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn btn-besitos">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn btn-besitos">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn btn-besitos">Besitos
