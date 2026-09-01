@@ -6,26 +6,30 @@
     <title>Horario De Locutores y Dj - Galaxy Sound Radio</title>
     <style>
         :root {
-            --bg-color: #0b0c10;
-            --panel-bg: #141620;
-            --accent: #1f2833;
-            --neon-blue: #00e5ff;
-            --text-main: #ffffff;
-            --text-muted: #8c92a4;
-            --border-color: rgba(255, 255, 255, 0.08);
-            --shadow-3d: 0 5px 10px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+            --panel-bg: rgba(13, 15, 28, 0.88);
+            --text-color: #ffffff;
+            --accent-cyan: #00f3ff;
+            --border-color: rgba(0, 243, 255, 0.3);
+            
+            /* Colores temáticos galaxia para Hombres y Mujeres */
+            --male-btn: linear-gradient(135deg, #1b365d, #0f1c3f);
+            --male-border: #3b82f6;
+            --female-btn: linear-gradient(135deg, #4c1d95, #31105e);
+            --female-border: #ec4899;
+            --empty-bg: rgba(255, 255, 255, 0.03);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background: url('https://xatimg.com/image/OkaFhmBen1g7.png') no-repeat center center fixed;
+            background-size: cover;
+            color: var(--text-color);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -33,15 +37,15 @@
             padding: 10px;
         }
 
-        /* Contenedor principal tamaño mediano compacto (Estilo A5 horizontal) */
-        .a5-panel {
+        .radio-panel {
+            background-color: var(--panel-bg);
             width: 100%;
-            max-width: 850px;
-            background: var(--panel-bg);
-            border-radius: 10px;
+            max-width: 620px; /* Tamaño aproximado proporcional A5 */
+            border-radius: 14px;
+            padding: 15px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 243, 255, 0.15);
             border: 1px solid var(--border-color);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.7);
-            padding: 12px;
+            backdrop-filter: blur(6px);
         }
 
         header {
@@ -50,193 +54,235 @@
         }
 
         header h1 {
-            font-size: 1.1rem;
-            color: var(--neon-blue);
-            text-transform: uppercase;
-            letter-spacing: 0.8px;
-            text-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+            font-size: 1.15rem;
+            color: var(--accent-cyan);
+            text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
             margin-bottom: 2px;
         }
 
         header h2 {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            font-weight: 400;
+            font-size: 0.82rem;
+            color: #d1d5db;
+            font-weight: 500;
         }
 
-        /* Tabla de Horarios 24 Horas y Países */
+        /* Panel de Relojes y Banderas arriba de Lunes a Viernes */
+        .world-clocks {
+            display: flex;
+            justify-content: space-around;
+            background: rgba(10, 12, 24, 0.9);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px;
+            margin-bottom: 12px;
+            font-size: 0.7rem;
+        }
+
+        .clock-box {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+
+        .flag-img {
+            width: 22px;
+            height: 15px;
+            border-radius: 2px;
+            object-fit: cover;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+
+        .clock-box span {
+            font-weight: bold;
+            color: var(--accent-cyan);
+        }
+
+        /* Tabla de Horarios */
         .table-container {
             width: 100%;
             overflow-x: auto;
-            margin-bottom: 10px;
-            border-radius: 6px;
-            border: 1px solid var(--border-color);
+            max-height: 310px;
+            overflow-y: auto;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 12px;
+        }
+
+        .table-container::-webkit-scrollbar {
+            width: 4px;
+            height: 4px;
+        }
+        .table-container::-webkit-scrollbar-thumb {
+            background: var(--accent-cyan);
+            border-radius: 2px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.65rem;
+            font-size: 0.68rem;
             text-align: center;
-            white-space: nowrap;
         }
 
         th, td {
-            padding: 4px 3px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
-            border-right: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        th:last-child, td:last-child {
-            border-right: none;
+            padding: 5px 3px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         th {
-            background: #1b1e2b;
-            color: var(--neon-blue);
+            background-color: rgba(15, 23, 42, 0.95);
+            color: var(--accent-cyan);
             font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.62rem;
+            position: sticky;
+            top: 0;
+            z-index: 2;
         }
 
-        /* Columnas de Horarios por Países con banderas abajo */
-        .time-col {
-            background: #11131c;
-            font-weight: bold;
-            color: #d1d5db;
-            font-size: 0.6rem;
-            line-height: 1.1;
-        }
-
-        .flag-sub {
-            display: block;
-            font-size: 0.55rem;
-            color: var(--text-muted);
-            font-weight: normal;
-            margin-top: 1px;
-        }
-
-        /* Botones 3D para Locutores y DJs */
+        /* Botones 3D Estilo Galaxia para Locutores */
         .dj-btn {
+            padding: 4px 2px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 0.64rem;
             display: inline-block;
-            background: linear-gradient(145deg, #232738, #181b26);
-            border: 1px solid #2f354a;
-            color: #ffffff;
-            padding: 3px 6px;
-            border-radius: 4px;
-            font-size: 0.65rem;
-            font-weight: 600;
-            box-shadow: var(--shadow-3d);
-            transition: all 0.15s ease;
-            text-transform: uppercase;
-            cursor: pointer;
+            width: 100%;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+            box-shadow: 0 3px 5px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
+            transition: transform 0.1s ease;
         }
 
         .dj-btn:hover {
             transform: translateY(-1px);
-            border-color: var(--neon-blue);
-            color: var(--neon-blue);
         }
 
-        /* Estilos e indicadores por locutor */
-        .alix { border-left: 3px solid #ff4757; }
-        .fierrudo { border-left: 3px solid #ffa502; }
-        .luisj { border-left: 3px solid #2ed573; }
-        .didi { border-left: 3px solid #1e90ff; }
-        .dayana { border-left: 3px solid #ff6b81; }
-        .pelired { border-left: 3px solid #ff4757; }
-        .manuel { border-left: 3px solid #3742fa; }
-        .milka { border-left: 3px solid #747d8c; }
-        .besitos { border-left: 3px solid #ff9ff3; }
-        .aries { border-left: 3px solid #5352ed; }
-        .maxim { border-left: 3px solid #ffa502; }
+        /* Estilos asignados por género galáctico */
+        .male {
+            background: var(--male-btn);
+            border: 1px solid var(--male-border);
+            color: #93c5fd;
+        }
 
-        /* Labios blancos */
+        .female {
+            background: var(--female-btn);
+            border: 1px solid var(--female-border);
+            color: #f472b6;
+        }
+
+        .empty-slot {
+            color: #6b7280;
+            background: var(--empty-bg);
+            font-style: italic;
+        }
+
+        /* Labios Blancos */
         .white-lips {
             filter: brightness(0) invert(1);
             font-size: 0.7rem;
             vertical-align: middle;
         }
 
-        .empty-slot {
-            color: #3e4456;
-            font-size: 0.7rem;
-        }
-
-        /* Sección de DJs Emergentes Compacta a los lados */
+        /* Sección de DJs Emergentes */
         .emerging-section {
-            background: #11131c;
-            border-radius: 6px;
-            padding: 6px 8px;
+            background: rgba(10, 12, 24, 0.85);
+            padding: 10px;
+            border-radius: 8px;
             border: 1px solid var(--border-color);
-            margin-bottom: 6px;
         }
 
         .emerging-section h3 {
-            font-size: 0.68rem;
-            color: var(--neon-blue);
+            font-size: 0.75rem;
+            color: var(--accent-cyan);
+            margin-bottom: 6px;
             text-align: center;
-            margin-bottom: 5px;
-            text-transform: uppercase;
             letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         .emerging-grid {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 4px;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
         }
 
         .emerging-btn {
-            background: linear-gradient(145deg, #1b1e2b, #12141d);
-            border: 1px solid #282d3d;
-            color: #cbd5e1;
-            padding: 2px 6px;
-            border-radius: 3px;
+            background: linear-gradient(135deg, #1e1b4b, #0f172a);
+            border: 1px solid #4f46e5;
+            color: #e2e8f0;
+            padding: 4px 2px;
             font-size: 0.58rem;
-            font-weight: 600;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-            text-transform: uppercase;
-            transition: all 0.15s ease;
+            text-align: center;
+            border-radius: 4px;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: all 0.2s;
         }
 
         .emerging-btn:hover {
-            background: var(--neon-blue);
-            color: #000;
-            border-color: var(--neon-blue);
+            border-color: var(--accent-cyan);
             transform: translateY(-1px);
+            box-shadow: 0 4px 6px rgba(0, 243, 255, 0.3);
         }
 
         footer {
             text-align: center;
-            font-size: 0.58rem;
-            color: var(--text-muted);
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-            padding-top: 5px;
+            margin-top: 8px;
+            font-size: 0.65rem;
+            color: #9ca3af;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 6px;
         }
 
         footer span {
-            color: var(--neon-blue);
+            color: var(--accent-cyan);
+        }
+
+        /* Adaptabilidad para Celulares */
+        @media (max-width: 480px) {
+            .radio-panel {
+                padding: 10px;
+            }
+            header h1 {
+                font-size: 1rem;
+            }
+            .emerging-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="a5-panel">
+    <div class="radio-panel">
         <header>
             <h1>Horario De Locutores y Dj</h1>
-            <h2>Galaxy Sound Radio</h2>
+            <h2>En la Mejor Estación de Galaxy Sound Radio</h2>
         </header>
+
+        <div class="world-clocks">
+            <div class="clock-box">
+                <img src="https://flagcdn.com/w40/mx.png" alt="México" class="flag-img">
+                <span id="clock-mx">--:--:--</span>
+                <small>México</small>
+            </div>
+            <div class="clock-box">
+                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="flag-img">
+                <span id="clock-ar">--:--:--</span>
+                <small>Argentina</small>
+            </div>
+            <div class="clock-box">
+                <img src="https://flagcdn.com/w40/es.png" alt="España" class="flag-img">
+                <span id="clock-es">--:--:--</span>
+                <small>España</small>
+            </div>
+        </div>
 
         <div class="table-container">
             <table>
                 <thead>
                     <tr>
-                        <th>🇲🇽 MX</th>
-                        <th>🇦🇷 AR</th>
-                        <th>🇨🇱 CL</th>
-                        <th>🇪🇸 ES</th>
+                        <th>Hora</th>
                         <th>Lunes</th>
                         <th>Martes</th>
                         <th>Miércoles</th>
@@ -248,178 +294,174 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="time-col">00:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">02:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">02:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">07:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">01:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">03:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">03:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">08:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">02:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">04:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">04:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">09:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">03:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">05:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">05:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">10:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">04:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">06:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">06:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">11:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">05:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">07:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">07:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">12:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">06:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">08:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">08:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">13:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">07:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">09:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">09:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">14:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">08:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">10:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">10:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">15:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td><td><span class="dj-btn alix">Alix</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">09:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">11:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">11:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">16:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><span class="dj-btn fierrudo">Fierrudo</span></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn fierrudo">Fierrudo</span></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn alix">Alix</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">10:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">12:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">12:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">17:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn didi">Didi</span></td><td><span class="dj-btn luisj">Luis j</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">11:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">13:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">13:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">18:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn luisj">Luis j</span></td><td><span class="dj-btn didi">Didi</span></td><td><span class="dj-btn luisj">Luis j</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">12:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">14:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">14:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">19:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">13:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">15:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">15:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">20:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn dayana">Dayana</span></td><td><span class="dj-btn dayana">Dayana</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">14:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">16:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">16:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">21:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn pelired">PeliRed</span></td><td><span class="dj-btn pelired">PeliRed</span></td><td><span class="dj-btn pelired">PeliRed</span></td><td><span class="dj-btn pelired">PeliRed</span></td><td><span class="dj-btn pelired">PeliRed</span></td><td><span class="dj-btn dayana">Dayana</span></td><td><span class="dj-btn dayana">Dayana</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">15:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">17:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">17:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">22:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn dayana">Dayana</span></td><td><span class="dj-btn dayana">Dayana</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">16:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">18:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">18:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">23:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn manuel">Manuel</span></td><td><span class="dj-btn milka">Milka</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">17:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">19:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">19:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">00:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn manuel">Manuel</span></td><td><span class="dj-btn milka">Milka</span></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">18:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">20:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">20:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">01:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn didi">Didi</span></td><td><span class="dj-btn didi">Didi</span></td><td><span class="dj-btn didi">Didi</span></td><td><span class="dj-btn didi">Didi</span></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn milka">Milka</span></td><td><div class="empty-slot">-</div></td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">19:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">21:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">21:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">02:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><span class="dj-btn besitos"><span class="white-lips">💋</span> Besitos</span></td>
-                        <td><span class="dj-btn besitos"><span class="white-lips">💋</span> Besitos</span></td>
-                        <td><span class="dj-btn besitos"><span class="white-lips">💋</span> Besitos</span></td>
-                        <td><span class="dj-btn besitos"><span class="white-lips">💋</span> Besitos</span></td>
-                        <td><span class="dj-btn besitos"><span class="white-lips">💋</span> Besitos</span></td>
-                        <td><span class="dj-btn milka">Milka</span></td>
+                        <td><strong>07:00</strong></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
                         <td><div class="empty-slot">-</div></td>
                     </tr>
                     <tr>
-                        <td class="time-col">20:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">22:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">22:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">03:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn aries">Ari</span></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
+                        <td><strong>08:00</strong></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
                     </tr>
                     <tr>
-                        <td class="time-col">21:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">23:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">23:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">04:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn aries">Ari</span></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn aries">Aries</span></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
+                        <td><strong>09:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Fierrudo</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Fierrudo</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Alix</div></td>
                     </tr>
                     <tr>
-                        <td class="time-col">22:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">00:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">00:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">05:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><span class="dj-btn maxim">Maxim</span></td><td><span class="dj-btn maxim">Maxim</span></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn maxim">Maxim</span></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
+                        <td><strong>10:00</strong></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
                     </tr>
                     <tr>
-                        <td class="time-col">23:00<span class="flag-sub">🇲🇽</span></td>
-                        <td class="time-col">01:00<span class="flag-sub">🇦🇷</span></td>
-                        <td class="time-col">01:00<span class="flag-sub">🇨🇱</span></td>
-                        <td class="time-col">06:00<span class="flag-sub">🇪🇸</span></td>
-                        <td><div class="empty-slot">-</div></td><td><span class="dj-btn maxim">Maxim</span></td><td><span class="dj-btn maxim">Maxim</span></td><td><div class="empty-slot">-</div></td><td><span class="dj-btn maxim">Maxim</span></td><td><div class="empty-slot">-</div></td><td><div class="empty-slot">-</div></td>
+                        <td><strong>11:00</strong></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="dj-btn male">Luis J</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>12:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>13:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>14:00</strong></td>
+                        <td><div class="dj-btn female">PeliRed</div></td>
+                        <td><div class="dj-btn female">PeliRed</div></td>
+                        <td><div class="dj-btn female">PeliRed</div></td>
+                        <td><div class="dj-btn female">PeliRed</div></td>
+                        <td><div class="dj-btn female">PeliRed</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>15:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><div class="dj-btn female">Dayana</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>16:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Manuel</div></td>
+                        <td><div class="dj-btn female">Milka</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>17:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Manuel</div></td>
+                        <td><div class="dj-btn female">Milka</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>18:00</strong></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="dj-btn female">Didi</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Milka</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>19:00</strong></td>
+                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
+                        <td><div class="dj-btn female">Milka</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>20:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Ari</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>21:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn female">Ari</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Aries</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>22:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                    </tr>
+                    <tr>
+                        <td><strong>23:00</strong></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="dj-btn male">Maxim</div></td>
+                        <td><div class="empty-slot">-</div></td>
+                        <td><div class="empty-slot">-</div></td>
                     </tr>
                 </tbody>
             </table>
@@ -434,7 +476,6 @@
                 <div class="emerging-btn">VIRTUAL</div>
                 <div class="emerging-btn">CESAR MIX</div>
                 <div class="emerging-btn">JUANDJMIX</div>
-                <div class="emerging-btn">BUHO</div>
                 <div class="emerging-btn">EL MAESTRO</div>
                 <div class="emerging-btn">RULAXIN</div>
                 <div class="emerging-btn">RICKY</div>
@@ -449,5 +490,21 @@
         </footer>
     </div>
 
+    <script>
+        // Sincronización de Relojes con hora real para México, Argentina y España
+        function updateClocks() {
+            const opt = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+            const now = new Date();
+            try {
+                document.getElementById('clock-mx').innerText = new Intl.DateTimeFormat('es-MX', { ...opt, timeZone: 'America/Mexico_City' }).format(now);
+                document.getElementById('clock-ar').innerText = new Intl.DateTimeFormat('es-AR', { ...opt, timeZone: 'America/Argentina/Buenos_Aires' }).format(now);
+                document.getElementById('clock-es').innerText = new Intl.DateTimeFormat('es-ES', { ...opt, timeZone: 'Europe/Madrid' }).format(now);
+            } catch (e) {
+                console.error("Error al actualizar los relojes", e);
+            }
+        }
+        setInterval(updateClocks, 1000);
+        updateClocks();
+    </script>
 </body>
 </html>
