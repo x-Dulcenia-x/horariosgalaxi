@@ -6,17 +6,13 @@
     <title>Horario De Locutores y Dj - Galaxy Sound Radio</title>
     <style>
         :root {
-            --panel-bg: rgba(13, 15, 28, 0.88);
-            --text-color: #ffffff;
-            --accent-cyan: #00f3ff;
-            --border-color: rgba(0, 243, 255, 0.3);
-            
-            /* Colores temáticos galaxia para Hombres y Mujeres */
-            --male-btn: linear-gradient(135deg, #1b365d, #0f1c3f);
-            --male-border: #3b82f6;
-            --female-btn: linear-gradient(135deg, #4c1d95, #31105e);
-            --female-border: #ec4899;
-            --empty-bg: rgba(255, 255, 255, 0.03);
+            --bg-color: #0d1117;
+            --panel-bg: rgba(18, 22, 33, 0.92);
+            --accent-glow: #00f3ff;
+            --btn-bg: linear-gradient(135deg, #252b42, #151928);
+            --btn-border: #3d4669;
+            --text-color: #f3f4f6;
+            --text-muted: #8b949e;
         }
 
         * {
@@ -27,58 +23,67 @@
         }
 
         body {
-            background: url('https://xatimg.com/image/OkaFhmBen1g7.png') no-repeat center center fixed;
+            background-color: var(--bg-color);
+            background-image: url('https://xatimg.com/image/OkaFhmBen1g7.png');
             background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
             color: var(--text-color);
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            padding: 10px;
         }
 
-        .radio-panel {
-            background-color: var(--panel-bg);
+        /* Contenedor principal tamaño compacto A5 / tarjeta interactiva */
+        .container {
             width: 100%;
-            max-width: 620px; /* Tamaño aproximado proporcional A5 */
-            border-radius: 14px;
-            padding: 15px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 243, 255, 0.15);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(6px);
+            max-width: 720px;
+            background: var(--panel-bg);
+            border: 2px solid #30363d;
+            border-radius: 16px;
+            padding: 18px;
+            box-shadow: 0 10px 35px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(8px);
         }
 
+        /* Cabecera */
         header {
             text-align: center;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+            border-bottom: 2px solid #2d3348;
+            padding-bottom: 8px;
         }
 
-        header h1 {
-            font-size: 1.15rem;
-            color: var(--accent-cyan);
+        h1 {
+            font-size: 1.25rem;
+            color: #ffffff;
             text-shadow: 0 0 10px rgba(0, 243, 255, 0.6);
-            margin-bottom: 2px;
+            margin-bottom: 3px;
+            letter-spacing: 0.5px;
         }
 
-        header h2 {
-            font-size: 0.82rem;
-            color: #d1d5db;
-            font-weight: 500;
+        .subtitle {
+            font-size: 0.8rem;
+            color: var(--accent-glow);
+            font-weight: 600;
         }
 
-        /* Panel de Relojes y Banderas arriba de Lunes a Viernes */
+        /* Relojes internacionales y banderas */
         .world-clocks {
             display: flex;
             justify-content: space-around;
-            background: rgba(10, 12, 24, 0.9);
-            border: 1px solid var(--border-color);
+            background: rgba(13, 17, 23, 0.85);
+            border: 1px solid #2d3348;
             border-radius: 8px;
             padding: 6px;
             margin-bottom: 12px;
-            font-size: 0.7rem;
+            font-size: 0.72rem;
         }
 
-        .clock-box {
+        .clock-item {
             text-align: center;
             display: flex;
             flex-direction: column;
@@ -86,97 +91,86 @@
             gap: 2px;
         }
 
-        .flag-img {
+        .flag-icon {
             width: 22px;
             height: 15px;
             border-radius: 2px;
-            object-fit: cover;
             box-shadow: 0 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .clock-box span {
-            font-weight: bold;
-            color: var(--accent-cyan);
+            object-fit: cover;
         }
 
         /* Tabla de Horarios */
         .table-container {
-            width: 100%;
-            overflow-x: auto;
-            max-height: 310px;
+            max-height: 300px;
             overflow-y: auto;
             border-radius: 8px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            border: 1px solid #2d3348;
             margin-bottom: 12px;
         }
 
         .table-container::-webkit-scrollbar {
-            width: 4px;
-            height: 4px;
+            width: 5px;
         }
         .table-container::-webkit-scrollbar-thumb {
-            background: var(--accent-cyan);
-            border-radius: 2px;
+            background: #3a4163;
+            border-radius: 4px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            font-size: 0.68rem;
+            font-size: 0.7rem;
             text-align: center;
         }
 
         th, td {
             padding: 5px 3px;
-            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-bottom: 1px solid #21262d;
+            border-right: 1px solid #21262d;
         }
 
         th {
-            background-color: rgba(15, 23, 42, 0.95);
-            color: var(--accent-cyan);
-            font-weight: 600;
+            background-color: #171c2c;
+            color: var(--accent-glow);
+            font-weight: bold;
             position: sticky;
             top: 0;
             z-index: 2;
         }
 
-        /* Botones 3D Estilo Galaxia para Locutores */
+        /* Botones 3D para locutores con colores galaxia adaptados a género */
         .dj-btn {
-            padding: 4px 2px;
-            border-radius: 5px;
-            font-weight: bold;
-            font-size: 0.64rem;
             display: inline-block;
+            background: var(--btn-bg);
+            border: 1px solid var(--btn-border);
+            border-bottom: 3px solid #0b0e17;
+            border-radius: 5px;
+            padding: 3px 5px;
+            font-weight: bold;
+            color: #ffffff;
+            font-size: 0.65rem;
+            box-shadow: 0 3px 5px rgba(0,0,0,0.4);
+            transition: all 0.1s ease;
+            white-space: nowrap;
             width: 100%;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.6);
-            box-shadow: 0 3px 5px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.15);
-            transition: transform 0.1s ease;
         }
 
         .dj-btn:hover {
             transform: translateY(-1px);
+            border-color: var(--accent-glow);
+            box-shadow: 0 4px 8px rgba(0, 243, 255, 0.3);
         }
 
-        /* Estilos asignados por género galáctico */
-        .male {
-            background: var(--male-btn);
-            border: 1px solid var(--male-border);
-            color: #93c5fd;
-        }
-
-        .female {
-            background: var(--female-btn);
-            border: 1px solid var(--female-border);
-            color: #f472b6;
-        }
+        /* Estilos de colores galaxia (Hombres / Mujeres) */
+        .female-glow { border-left: 3px solid #ff79c6; }
+        .male-glow { border-left: 3px solid #8be9fd; }
 
         .empty-slot {
-            color: #6b7280;
-            background: var(--empty-bg);
-            font-style: italic;
+            color: var(--text-muted);
+            font-weight: bold;
         }
 
-        /* Labios Blancos */
+        /* Labios blancos para Besitos */
         .white-lips {
             filter: brightness(0) invert(1);
             font-size: 0.7rem;
@@ -185,19 +179,20 @@
 
         /* Sección de DJs Emergentes */
         .emerging-section {
-            background: rgba(10, 12, 24, 0.85);
-            padding: 10px;
+            background: rgba(13, 17, 23, 0.8);
+            border: 1px solid #2d3348;
             border-radius: 8px;
-            border: 1px solid var(--border-color);
+            padding: 8px;
+            margin-bottom: 8px;
         }
 
         .emerging-section h3 {
             font-size: 0.75rem;
-            color: var(--accent-cyan);
-            margin-bottom: 6px;
             text-align: center;
-            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+            color: var(--accent-glow);
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .emerging-grid {
@@ -207,74 +202,72 @@
         }
 
         .emerging-btn {
-            background: linear-gradient(135deg, #1e1b4b, #0f172a);
-            border: 1px solid #4f46e5;
-            color: #e2e8f0;
-            padding: 4px 2px;
-            font-size: 0.58rem;
-            text-align: center;
+            background: linear-gradient(135deg, #1f2438, #111522);
+            border: 1px solid #384061;
+            border-bottom: 2px solid #000;
             border-radius: 4px;
+            padding: 4px 2px;
+            text-align: center;
+            font-size: 0.6rem;
             font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
+            color: #d1d5db;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.3);
             transition: all 0.2s;
         }
 
         .emerging-btn:hover {
-            border-color: var(--accent-cyan);
+            background: #313854;
+            color: #fff;
+            border-color: var(--accent-glow);
             transform: translateY(-1px);
-            box-shadow: 0 4px 6px rgba(0, 243, 255, 0.3);
         }
 
+        /* Pie de página */
         footer {
             text-align: center;
-            margin-top: 8px;
-            font-size: 0.65rem;
-            color: #9ca3af;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.68rem;
+            color: var(--text-muted);
+            border-top: 1px solid #2d3348;
             padding-top: 6px;
         }
 
         footer span {
-            color: var(--accent-cyan);
+            color: var(--accent-glow);
+            font-weight: 600;
         }
 
-        /* Adaptabilidad para Celulares */
+        /* Media queries para celulares */
         @media (max-width: 480px) {
-            .radio-panel {
-                padding: 10px;
-            }
-            header h1 {
-                font-size: 1rem;
-            }
-            .emerging-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
+            .container { padding: 10px; }
+            h1 { font-size: 1.1rem; }
+            .emerging-grid { grid-template-columns: repeat(3, 1fr); }
+            table { font-size: 0.62rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="radio-panel">
+    <div class="container">
         <header>
             <h1>Horario De Locutores y Dj</h1>
-            <h2>En la Mejor Estación de Galaxy Sound Radio</h2>
+            <div class="subtitle">En la Mejor Estación de Galaxy Sound Radio</div>
         </header>
 
         <div class="world-clocks">
-            <div class="clock-box">
-                <img src="https://flagcdn.com/w40/mx.png" alt="México" class="flag-img">
-                <span id="clock-mx">--:--:--</span>
-                <small>México</small>
+            <div class="clock-item">
+                <img src="https://flagcdn.com/w40/mx.png" alt="México" class="flag-icon">
+                <span>México</span>
+                <strong id="time-mx">--:--</strong>
             </div>
-            <div class="clock-box">
-                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="flag-img">
-                <span id="clock-ar">--:--:--</span>
-                <small>Argentina</small>
+            <div class="clock-item">
+                <img src="https://flagcdn.com/w40/ar.png" alt="Argentina" class="flag-icon">
+                <span>Argentina</span>
+                <strong id="time-ar">--:--</strong>
             </div>
-            <div class="clock-box">
-                <img src="https://flagcdn.com/w40/es.png" alt="España" class="flag-img">
-                <span id="clock-es">--:--:--</span>
-                <small>España</small>
+            <div class="clock-item">
+                <img src="https://flagcdn.com/w40/es.png" alt="España" class="flag-icon">
+                <span>España</span>
+                <strong id="time-es">--:--</strong>
             </div>
         </div>
 
@@ -295,173 +288,173 @@
                 <tbody>
                     <tr>
                         <td><strong>07:00</strong></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>08:00</strong></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
                     </tr>
                     <tr>
                         <td><strong>09:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Fierrudo</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Fierrudo</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Alix</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Fierrudo</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Fierrudo</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Alix</span></td>
                     </tr>
                     <tr>
                         <td><strong>10:00</strong></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
                     </tr>
                     <tr>
                         <td><strong>11:00</strong></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="dj-btn male">Luis J</div></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="dj-btn male-glow">Luis j</span></td>
                     </tr>
                     <tr>
                         <td><strong>12:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>13:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
                     </tr>
                     <tr>
                         <td><strong>14:00</strong></td>
-                        <td><div class="dj-btn female">PeliRed</div></td>
-                        <td><div class="dj-btn female">PeliRed</div></td>
-                        <td><div class="dj-btn female">PeliRed</div></td>
-                        <td><div class="dj-btn female">PeliRed</div></td>
-                        <td><div class="dj-btn female">PeliRed</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><span class="dj-btn female-glow">PeliRed</span></td>
+                        <td><span class="dj-btn female-glow">PeliRed</span></td>
+                        <td><span class="dj-btn female-glow">PeliRed</span></td>
+                        <td><span class="dj-btn female-glow">PeliRed</span></td>
+                        <td><span class="dj-btn female-glow">PeliRed</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
                     </tr>
                     <tr>
                         <td><strong>15:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
-                        <td><div class="dj-btn female">Dayana</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
+                        <td><span class="dj-btn female-glow">Dayana</span></td>
                     </tr>
                     <tr>
                         <td><strong>16:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Manuel</div></td>
-                        <td><div class="dj-btn female">Milka</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Manuel</span></td>
+                        <td><span class="dj-btn female-glow">Milka</span></td>
                     </tr>
                     <tr>
                         <td><strong>17:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Manuel</div></td>
-                        <td><div class="dj-btn female">Milka</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Manuel</span></td>
+                        <td><span class="dj-btn female-glow">Milka</span></td>
                     </tr>
                     <tr>
                         <td><strong>18:00</strong></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="dj-btn female">Didi</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Milka</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="dj-btn female-glow">Didi</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Milka</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>19:00</strong></td>
-                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
-                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
-                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
-                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
-                        <td><div class="dj-btn female">Besitos <span class="white-lips">💋</span></div></td>
-                        <td><div class="dj-btn female">Milka</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="dj-btn female-glow">Besitos <span class="white-lips">💋</span></span></td>
+                        <td><span class="dj-btn female-glow">Besitos <span class="white-lips">💋</span></span></td>
+                        <td><span class="dj-btn female-glow">Besitos <span class="white-lips">💋</span></span></td>
+                        <td><span class="dj-btn female-glow">Besitos <span class="white-lips">💋</span></span></td>
+                        <td><span class="dj-btn female-glow">Besitos <span class="white-lips">💋</span></span></td>
+                        <td><span class="dj-btn female-glow">Milka</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>20:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Ari</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Ari</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>21:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn female">Ari</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Aries</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn female-glow">Ari</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Aries</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>22:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                     <tr>
                         <td><strong>23:00</strong></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="dj-btn male">Maxim</div></td>
-                        <td><div class="empty-slot">-</div></td>
-                        <td><div class="empty-slot">-</div></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="dj-btn male-glow">Maxim</span></td>
+                        <td><span class="empty-slot">-</span></td>
+                        <td><span class="empty-slot">-</span></td>
                     </tr>
                 </tbody>
             </table>
@@ -491,18 +484,22 @@
     </div>
 
     <script>
-        // Sincronización de Relojes con hora real para México, Argentina y España
         function updateClocks() {
-            const opt = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
             const now = new Date();
-            try {
-                document.getElementById('clock-mx').innerText = new Intl.DateTimeFormat('es-MX', { ...opt, timeZone: 'America/Mexico_City' }).format(now);
-                document.getElementById('clock-ar').innerText = new Intl.DateTimeFormat('es-AR', { ...opt, timeZone: 'America/Argentina/Buenos_Aires' }).format(now);
-                document.getElementById('clock-es').innerText = new Intl.DateTimeFormat('es-ES', { ...opt, timeZone: 'Europe/Madrid' }).format(now);
-            } catch (e) {
-                console.error("Error al actualizar los relojes", e);
-            }
+            
+            // México (GMT-6)
+            const optionsMX = { timeZone: 'America/Mexico_City', hour: '2-digit', minute: '2-digit', hour12: false };
+            document.getElementById('time-mx').innerText = now.toLocaleTimeString('es-MX', optionsMX);
+
+            // Argentina (GMT-3)
+            const optionsAR = { timeZone: 'America/Argentina/Buenos_Aires', hour: '2-digit', minute: '2-digit', hour12: false };
+            document.getElementById('time-ar').innerText = now.toLocaleTimeString('es-AR', optionsAR);
+
+            // España (GMT+2 en horario de verano)
+            const optionsES = { timeZone: 'Europe/Madrid', hour: '2-digit', minute: '2-digit', hour12: false };
+            document.getElementById('time-es').innerText = now.toLocaleTimeString('es-ES', optionsES);
         }
+
         setInterval(updateClocks, 1000);
         updateClocks();
     </script>
